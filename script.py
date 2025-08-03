@@ -29,14 +29,10 @@ chat = pytchat.create(video_id=video_id)
 
 while chat.is_alive():
     for c in chat.get().sync_items():
-        print(f"📩 {c.author.name}: {c.message}")
-
         codigo = extrair_codigo(c.message)
-        print(f"🔎 Código extraído: {codigo}")
 
         if codigo:
             print(f"✅ Código encontrado no chat: {codigo}")
             pyperclip.copy(codigo)
-            print("📋 Código copiado para a área de transferência!")
             os.system("paplay /usr/share/sounds/freedesktop/stereo/message.oga")
     time.sleep(1)
